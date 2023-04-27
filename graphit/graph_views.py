@@ -1,6 +1,6 @@
 from dataclasses import dataclass, replace
 #
-from .graph_interfaces import INHERITANCE, Graph
+from .graph_interfaces import HIERARCHY, Graph
 from .graph_components import LocalEdge, LocalGraph
 
 
@@ -9,12 +9,12 @@ xasd = (a for a in asd.get_edges())
 
 
 @dataclass(frozen=True)
-class InheritanceView:
+class HierarchyView:
     graph: Graph
 
     def get_parent(self, uri: str):
         query = (edge.get_from() for edge in self.graph.get_edges()
-                if edge.get_relationship() == INHERITANCE and edge.get_to() == uri)
+                if edge.get_relationship() == HIERARCHY and edge.get_to() == uri)
         try:
             result = next(query)
         except StopIteration:
@@ -27,8 +27,8 @@ class InheritanceView:
 
     def set_parent(self, uri: str, new_parent_uri: str):
         without_parent = (edge for edge in self.graph.get_edges() if edge.get_to() != uri)
-        with_new_parent = (*without_parent, LocalEdge(new_parent_uri, uri, INHERITANCE))
-        return InheritanceView(self.graph.set_edges(with_new_parent))
+        with_new_parent = (*without_parent, LocalEdge(new_parent_uri, uri, HIERARCHY))
+        return HierarchyView(self.graph.set_edges(with_new_parent))
 
     def get_children(self, uri: str):
         return (edge.get_to() for edge in self.graph.get_edges() if edge.get_from() == uri)

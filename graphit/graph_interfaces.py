@@ -1,11 +1,11 @@
 from typing import Literal, Mapping, Protocol, runtime_checkable, Self, Sequence
 
 
-INHERITANCE = 'inheritance'
+HIERARCHY = 'hierarhcy'
 OWNERSHIP = 'ownership'
 
 
-Relationship = Literal['inheritance', 'ownership']
+Relationship = Literal['hierarhcy', 'ownership']
 
 
 @runtime_checkable

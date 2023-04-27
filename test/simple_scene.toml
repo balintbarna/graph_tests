@@ -12,9 +12,9 @@ label="scene root"
 [[edges]]
 from = "root"
 to = "child1"
-rel = "inheritance"
+rel = "hierarhcy"
 
 [[edges]]
 from = "root"
 to = "child2"
-rel = "inheritance"
+rel = "hierarhcy"
