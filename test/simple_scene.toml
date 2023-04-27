@@ -1,0 +1,20 @@
+# Define the nodes
+[root]
+label="scene root"
+
+[child1]
+"label"="left child"
+
+[child2]
+"label"="right child"
+
+# Define the edges
+[[edges]]
+from = "root"
+to = "child1"
+rel = "inheritance"
+
+[[edges]]
+from = "root"
+to = "child2"
+rel = "inheritance"

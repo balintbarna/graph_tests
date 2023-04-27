@@ -1,0 +1,23 @@
+from typing import Literal, Mapping, Protocol, runtime_checkable, Self, Sequence
+
+
+INHERITANCE = 'inheritance'
+OWNERSHIP = 'ownership'
+
+
+Relationship = Literal['inheritance', 'ownership']
+
+
+@runtime_checkable
+class Edge(Protocol):
+    def get_from(self) -> str: ...
+    def get_to(self) -> str: ...
+    def get_relationship(self) -> Relationship: ...
+
+
+@runtime_checkable
+class Graph(Protocol):
+    def get_nodes(self) -> Mapping[str, dict]: ...
+    def get_edges(self) -> Sequence[Edge]: ...
+    def set_nodes(self, nodes: Mapping[str, dict]) -> Self: ...
+    def set_edges(self, edges: Sequence[Edge]) -> Self: ...
